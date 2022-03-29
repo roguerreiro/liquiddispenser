@@ -1,0 +1,12 @@
+{% extends "interface/layout.html" %}
+
+{% block body %}
+{% if product.image %}
+  <img src="{{ product.image }}"/>
+{% endif %}
+<strong><h1>{{ product.name }}</h1></strong>
+<h2>${{ product.price }}/oz.</h2>
+<p><strong>Details: </strong> {{ product.details }}</p>
+
+
+{% endblock %}
