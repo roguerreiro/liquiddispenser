@@ -8,6 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from datetime import datetime
 from .models import Product, Dispenser
+# from .ultrasonic import distance
+
+# Declare dictionary that will store information on products dispensed by user
+dispensed = {}
 
 # Create your views here.
 def index(request):
@@ -18,9 +22,17 @@ def index(request):
 
 def product(request, key):
     product = Product.objects.get(id=key)
-    return render(request, "interface/product.html", {
-        "product": product
-    })
+    dispenser = Dispenser.objects.get(product=product)
+    if request.method == "POST":
+        if product not in dispensed:
+            dispensed.append(product, [dispenser.pin])
+    else:
+        return render(request, "interface/product.html", {
+            "product": product
+        })
 
 def checkout(request):
     return render(request, "interface/checkout.html")
+
+def dispense(request, key):
+    return render(request, "interface/dispense.html")
