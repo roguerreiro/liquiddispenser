@@ -35,9 +35,10 @@ def product(request, key):
 
 def checkout(request):
     if request.method == "POST":
-        dispensed = {}
+        dispensed.clear()
         return redirect("/")
     items = []
+
     for item in dispensed:
         if len(dispensed[item]) > 0:
             items.append([item, dispensed[item][-1] - dispensed[item][0]])
