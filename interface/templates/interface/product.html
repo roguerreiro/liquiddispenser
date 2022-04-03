@@ -7,6 +7,12 @@
 <strong><h1>{{ product.name }}</h1></strong>
 <h2>${{ product.price }}/oz.</h2>
 <p><strong>Details: </strong> {{ product.details }}</p>
+<a href="/">Return to all products</a>
+
+<form action="/product/{{ product.id }}" method="post">
+{% csrf_token %}
+  <button type="submit" id="start" name="start" value="start" class="btn btn-success">Start dispensing</button>
+</form>
 
 
 {% endblock %}

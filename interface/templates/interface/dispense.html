@@ -2,8 +2,8 @@
 
 {% block title %}Dispense {{ dispenser.product.name }}{% endblock %}
 
-{% block title %}
-<form action="/listing/{{ listing.auction.id }}" method="post">
+{% block body %}
+<form action="/dispense/{{ product.id }}" method="post">
 {% csrf_token %}
     <button type="submit" id="stop" name="stop" value="stop" class="btn btn-success">Finish dispensing</button>
 </form>

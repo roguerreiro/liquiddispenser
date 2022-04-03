@@ -1,0 +1,8 @@
+{% extends "interface/layout.html "%}
+
+{% block body %}
+<h1>Checkout</h1>
+{% for item in items %}
+  <p><strong>{{ item.0 }}: </strong>{{ item.1 }}</p>
+{% endfor %}
+{% endblock %}
