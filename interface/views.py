@@ -49,7 +49,7 @@ def dispense(request, key):
     product = Product.objects.get(id=key)
     dispenser = Dispenser.objects.get(product=product)
     if request.method == "POST":
-        dispensed[product.name].add(distance())
+        dispensed[product.name].append(distance())
         #dispensed[product.name].append(1)
         return redirect(index)
     else:
