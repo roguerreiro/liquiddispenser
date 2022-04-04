@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from datetime import datetime
 from .models import Product, Dispenser
-from .ultrasonic import distance
+from .ultrasonic import distance, precise_distance
 
 # Declare dictionary that will store information on products dispensed by user
 dispensed = {}
@@ -25,7 +25,7 @@ def product(request, key):
     dispenser = Dispenser.objects.get(product=product)
     if request.method == "POST":
         if product.name not in dispensed:
-            dispensed[product.name] = [distance()]
+            dispensed[product.name] = [precise_distance()]
             # dispensed[product.name] = [0]
         return redirect("/dispense/" + key)
     else:
@@ -51,7 +51,7 @@ def dispense(request, key):
     product = Product.objects.get(id=key)
     dispenser = Dispenser.objects.get(product=product)
     if request.method == "POST":
-        dispensed[product.name].append(distance())
+        dispensed[product.name].append(precise_distance())
         # dispensed[product.name].append(1)
         return redirect(index)
     else:

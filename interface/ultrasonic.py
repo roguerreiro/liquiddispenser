@@ -40,6 +40,14 @@ def distance():
 
     return distance
 
+def precise_distance():
+    distances_sum = 0
+    measurements = 500
+    for i in range(measurements):
+        distances_sum += distance()
+
+    return distances_sum / measurements
+
 if __name__ == '__main__':
     try:
         while True:
