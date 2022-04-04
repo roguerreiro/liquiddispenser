@@ -58,3 +58,11 @@ def dispense(request, key):
         return render(request, "interface/dispense.html", {
             "product": product
         })
+
+def calibrate(request):
+    if request.method == "POST":
+        return redirect("/calibrate")
+    reading = precise_distance()
+    return render(request, "interface/calibrate.html", {
+        "reading": reading
+    })

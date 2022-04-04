@@ -1,0 +1,10 @@
+{% extends "interface/layout.html" %}
+
+{% block body %}
+<h1>Current reading: {{ reading }}</h1>
+
+<form action="/calibration" method="post">
+{% csrf_token %}
+  <button type="submit" id="pay" name="pay" value="pay" class="btn btn-success">Get reading</button>
+</form>
+{% endblock %}
