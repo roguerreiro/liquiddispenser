@@ -41,7 +41,7 @@ def checkout(request):
 
     for item in dispensed.keys():
         if len(dispensed[item]) > 0:
-            volume = volume(dispensed[item][-1] - dispensed[item][0])
+            volume = volume(dispensed[item][0]) - volume(dispensed[item][-1])
             item_price = Product.objects.get(name=item)
             price = round(volume * item_price, 2)
             items.append([item, volume, price])
