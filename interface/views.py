@@ -43,8 +43,8 @@ def checkout(request):
         if len(dispensed[item]) > 0:
             volume_dispensed = volume(dispensed[item][0]) - volume(dispensed[item][-1])
             item_price = Product.objects.get(name=item)
-            price = round(volume * item_price, 2)
-            items.append([item, volume, price])
+            price = round(volume_dispensed * item_price, 2)
+            items.append([item, volume_dispensed, price])
 
     return render(request, "interface/checkout.html", {
         "items": items
