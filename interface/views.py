@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from datetime import datetime
 from .models import Product, Dispenser
-from .ultrasonic import distance, precise_distance
+from .ultrasonic import distance, precise_distance, volume
 
 # Declare dictionary that will store information on products dispensed by user
 dispensed = {}
@@ -41,7 +41,7 @@ def checkout(request):
 
     for item in dispensed.keys():
         if len(dispensed[item]) > 0:
-            volume = volume(dispensed[item][0]) - volume(dispensed[item][-1])
+            volume_dispensed = volume(dispensed[item][0]) - volume(dispensed[item][-1])
             item_price = Product.objects.get(name=item)
             price = round(volume * item_price, 2)
             items.append([item, volume, price])
