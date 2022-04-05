@@ -49,6 +49,10 @@ def precise_distance():
 
     return distances_sum / measurements
 
+def volume(distance):
+    milliliters = 5685.8 - 167.9 * distance - 1.5086 * distance * distance
+    return 0.033814 * milliliters
+
 if __name__ == '__main__':
     try:
         while True:

@@ -39,9 +39,12 @@ def checkout(request):
         return redirect("/")
     items = []
 
-    for item in dispensed:
+    for item in dispensed.keys():
         if len(dispensed[item]) > 0:
-            items.append([item, dispensed[item][-1] - dispensed[item][0]])
+            volume = volume(dispensed[item][-1] - dispensed[item][0])
+            item_price = Product.objects.get(name=item)
+            price = round(volume * item_price, 2)
+            items.append([item, volume, price])
 
     return render(request, "interface/checkout.html", {
         "items": items

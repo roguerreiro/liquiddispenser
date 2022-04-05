@@ -4,7 +4,7 @@
 <h1>Checkout</h1>
 <a href="/">Continue shopping</a>
 {% for item in items %}
-  <p><strong>{{ item.0 }}: </strong>{{ item.1 }}</p>
+  <p><strong>{{ item.0 }}: </strong>${{ item.2 }} ({{ item.1 }} oz.)</p>
 {% endfor %}
 
 <form action="/checkout" method="post">
