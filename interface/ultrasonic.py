@@ -42,7 +42,7 @@ def distance():
 
 def precise_distance():
     distances_sum = 0
-    measurements = 150
+    measurements = 30
     for i in range(measurements):
         distances_sum += distance()
         time.sleep(0.03)
