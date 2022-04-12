@@ -42,6 +42,7 @@ def checkout(request):
     for item in dispensed.keys():
         if len(dispensed[item]) > 0:
             volume_dispensed = volume(dispensed[item][0]) - volume(dispensed[item][-1])
+            # volume_dispensed = 1
             item_price = float(Product.objects.get(name=item).price)
             price = round(volume_dispensed * item_price, 2)
             volume_dispensed = round(volume_dispensed, 2)

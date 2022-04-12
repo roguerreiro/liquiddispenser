@@ -1,18 +1,25 @@
 {% extends "interface/layout.html" %}
 
 {% block body %}
-{% if product.image %}
-  <img src="{{ product.image }}"/>
-{% endif %}
-<strong><h1>{{ product.name }}</h1></strong>
-<h2>${{ product.price }}/oz.</h2>
-<p><strong>Details: </strong> {{ product.details }}</p>
-<a href="/">Return to all products</a>
+<div class="row">
+  {% if product.image %}
+  <div class="col-sm-2">
+    <img src="{{ product.image }}">
+  </div>
+  {% endif %}
+  <div class="col-sm-8">
+      <h1>{{ product.name }}</h1>
+      <h4><strong>${{ product.price }}/oz.</strong></h4>
+      <p>{{ product.details }}</p>
 
-<form action="/product/{{ product.id }}" method="post">
-{% csrf_token %}
-  <button type="submit" id="start" name="start" value="start" class="btn btn-success">Start dispensing</button>
-</form>
+      <form action="/product/{{ product.id }}" method="post">
+      {% csrf_token %}
+        <button type="submit" id="start" name="start" value="start" class="btn btn-success">Start dispensing</button>
+      </form>
+  </div>
+</div>
+
+
 
 
 {% endblock %}

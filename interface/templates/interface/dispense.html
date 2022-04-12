@@ -1,10 +1,18 @@
-{% extends "interface/layout.html" %}
+{% load static %}
 
-{% block title %}Dispense {{ dispenser.product.name }}{% endblock %}
-
-{% block body %}
-<form action="/dispense/{{ product.id }}" method="post">
-{% csrf_token %}
-    <button type="submit" id="stop" name="stop" value="stop" class="btn btn-success">Finish dispensing</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Interface{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'interface/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+      <div class="btn-dispense">
+        <form action="/dispense/{{ product.id }}" method="post">
+        {% csrf_token %}
+            <button type="submit" id="stop" name="stop" value="stop" class="btn btn-success btn-block"><h1>Finish dispensing</h1></button>
+        </form>
+      </div>
+    </body>
+</html>

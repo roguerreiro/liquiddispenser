@@ -1,0 +1,23 @@
+body {
+    padding: 10px;
+}
+
+img {
+  max-width: 150px;
+  max-height: 500px;
+}
+
+.btn-dispense {
+  text-align: center;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #aef359;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}

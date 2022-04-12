@@ -2,13 +2,21 @@
 
 {% block body %}
 <h1>Checkout</h1>
-<a href="/">Continue shopping</a>
-{% for item in items %}
-  <p><strong>{{ item.0 }}: </strong>${{ item.2 }} ({{ item.1 }} oz.)</p>
-{% endfor %}
+{% if items %}
+  <h3>Your tab:</h3>
+  {% for item in items %}
+    <p><strong>{{ item.0 }}: </strong>${{ item.2 }} ({{ item.1 }} oz.)</p>
+  {% endfor %}
 
-<form action="/checkout" method="post">
-{% csrf_token %}
-  <button type="submit" id="pay" name="pay" value="pay" class="btn btn-success">Finish and pay</button>
-</form>
+  <form action="/checkout" method="post">
+  {% csrf_token %}
+    <button type="submit" id="pay" name="pay" value="pay" class="btn btn-success">Finish and pay</button>
+  </form>
+{% else %}
+  <p>Looks like you haven't dispensed anything yet.</p>
+  <p>Head <a href="/">here</a> to get yourself something nice!</p>
+
+{% endif %}
+
+
 {% endblock %}
