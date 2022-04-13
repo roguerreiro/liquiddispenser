@@ -1,7 +1,13 @@
 {% extends "interface/layout.html" %}
 
 {% block body %}
-<h1>Current reading: {{ reading }}</h1>
+<ul>
+  {% for reading in readings %}
+    <li><strong>Reading #{{ reading.0 }}:</strong> {{ reading.1 }}</li>
+  {% endfor %}
+</ul>
+
+<p><strong>Average: </strong>{{ average }}</p>
 
 <form action="/calibrate" method="post">
 {% csrf_token %}

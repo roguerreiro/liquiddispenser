@@ -1,7 +1,7 @@
 {% extends "interface/layout.html" %}
 
 {% block body %}
-{% for dispenser in dispensers %}
+    {% for dispenser in dispensers %}
         <div class="row">
           {% if dispenser.product.image %}
           <div class="col-sm-2">
@@ -16,4 +16,6 @@
         </div>
         <hr />
     {% endfor %}
+
+    <a href='/admin'>Store staff login</a>
 {% endblock %}

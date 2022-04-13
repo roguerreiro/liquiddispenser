@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django import forms
 from datetime import datetime
-from .models import Product, Dispenser
+from .models import Product, Dispenser, Test
 from .ultrasonic import distance, precise_distance, volume
 
 # Declare dictionary that will store information on products dispensed by user
@@ -36,7 +36,7 @@ def product(request, key):
 def checkout(request):
     if request.method == "POST":
         dispensed.clear()
-        return redirect("/")
+        return redirect("/test")
     items = []
 
     for item in dispensed.keys():
@@ -67,7 +67,39 @@ def dispense(request, key):
 def calibrate(request):
     if request.method == "POST":
         return redirect("/calibrate")
-    reading = precise_distance()
+    readings = []
+    readings_number = 10
+    readings_sum = 0
+    for i in range(readings_number):
+        reading = precise_distance()
+        # reading = i + 1
+        readings.append([i + 1, reading])
+        readings_sum += reading
+
+    average = readings_sum / readings_number
+
     return render(request, "interface/calibrate.html", {
-        "reading": reading
+        "readings": readings,
+        "average": average
     })
+
+def test(request):
+    if request.method == "POST":
+        if request.POST.get('1'):
+            rating = Test(value=1)
+            rating.save()
+        elif request.POST.get('2'):
+            rating = Test(value=2)
+            rating.save()
+        elif request.POST.get('3'):
+            rating = Test(value=3)
+            rating.save()
+        elif request.POST.get('4'):
+            rating = Test(value=4)
+            rating.save()
+        elif request.POST.get('5'):
+            rating = Test(value=5)
+            rating.save()
+        return redirect("/")
+    else:
+        return render(request, "interface/test.html")

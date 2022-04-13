@@ -17,3 +17,9 @@ class Dispenser(models.Model):
 
     def __str__(self):
         return "Dispenser " + str(self.id)
+
+class Test(models.Model):
+    value = models.IntegerField()
+
+    def __str__(self):
+        return "Test #" + str(self.id) + " - " + str(self.value)

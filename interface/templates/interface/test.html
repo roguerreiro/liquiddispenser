@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Interface{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'interface/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+      <h1>User evaluation</h1>
+      <p>Please choose the option below that best describes your experience with this liquid dispensing system.</p>
+      <p>If you prefer not to answer, click the "Prefer not to answer" button.</p>
+      <p>After your selection, you will be taken back to the initial page.</p>
+      <p>Thank you for your help!</p>
+
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="1" name="1" value="1" class="btn btn-secondary btn-block"><h1>1- Had no idea where to start or what to do next.</h1></button>
+        </form>
+      </div>
+      <p></p>
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="2" name="2" value="2" class="btn btn-secondary btn-block"><h1>2- Lots of struggle in understanding what steps to follow.</h1></button>
+        </form>
+      </div>
+      <p></p>
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="3" name="3" value="3" class="btn btn-secondary btn-block"><h1>3- Felt confused throughout, but the layout of steps made it somewhat clearer. </h1></button>
+        </form>
+      </div>
+      <p></p>
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="4" name="4" value="4" class="btn btn-secondary btn-block"><h1>4- Most steps were clear and intuitive, but there were some moments of uncertainty.</h1></button>
+        </form>
+      </div>
+      <p></p>
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="5" name="5" value="5" class="btn btn-secondary btn-block"><h1>5- All steps were clear, and there were no doubts about what to do next throughout the process.</h1></button>
+        </form>
+      </div>
+      <p></p>
+      <div class="btn-dispense">
+        <form action="/test" method="post">
+        {% csrf_token %}
+            <button type="submit" id="no" name="no" value="no" class="btn btn-secondary btn-block"><h1>Prefer not to answer.</h1></button>
+        </form>
+      </div>
+    </body>
+</html>
