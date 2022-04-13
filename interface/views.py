@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from datetime import datetime
 from .models import Product, Dispenser, Test
+import time
 from .ultrasonic import distance, precise_distance, volume
 
 # Declare dictionary that will store information on products dispensed by user
