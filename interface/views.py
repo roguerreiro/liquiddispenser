@@ -75,6 +75,7 @@ def calibrate(request):
         # reading = i + 1
         readings.append([i + 1, reading])
         readings_sum += reading
+        time.sleep(3)
 
     average = readings_sum / readings_number
 
