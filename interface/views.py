@@ -69,7 +69,7 @@ def calibrate(request):
     if request.method == "POST":
         return redirect("/calibrate")
     readings = []
-    readings_number = 10
+    readings_number = 3
     readings_sum = 0
     for i in range(readings_number):
         reading = precise_distance()
