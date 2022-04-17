@@ -62,7 +62,7 @@ def dispense(request, key):
         return redirect(index)
     else:
         return render(request, "interface/dispense.html", {
-            "product": product
+            "dispenser": dispenser
         })
 
 def calibrate(request):
