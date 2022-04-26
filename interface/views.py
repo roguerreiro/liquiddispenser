@@ -91,6 +91,7 @@ def calibrate(request):
 
 def test(request):
     if request.method == "POST":
+        value = 0
         if request.POST.get('1'):
             value = 1
         elif request.POST.get('2'):
