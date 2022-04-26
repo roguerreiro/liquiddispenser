@@ -20,6 +20,7 @@ class Dispenser(models.Model):
 
 class Test(models.Model):
     value = models.IntegerField()
+    time = models.DecimalField(decimal_places=3, max_digits=6)
 
     def __str__(self):
         return "Test #" + str(self.id) + " - " + str(self.value)

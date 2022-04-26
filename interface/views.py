@@ -13,6 +13,7 @@ from .ultrasonic import distance, precise_distance, volume
 
 # Declare dictionary that will store information on products dispensed by user
 dispensed = {}
+timer = []
 
 # Create your views here.
 def index(request):
@@ -27,6 +28,7 @@ def product(request, key):
     if request.method == "POST":
         if product.name not in dispensed:
             dispensed[product.name] = [precise_distance()]
+            timer.append(time.perf_counter())
             # dispensed[product.name] = [0]
         return redirect("/dispense/" + key)
     else:
@@ -36,6 +38,7 @@ def product(request, key):
 
 def checkout(request):
     if request.method == "POST":
+        timer.append(time.perf_counter())
         dispensed.clear()
         return redirect("/test")
     items = []
@@ -88,20 +91,18 @@ def calibrate(request):
 def test(request):
     if request.method == "POST":
         if request.POST.get('1'):
-            rating = Test(value=1)
-            rating.save()
+            value = 1
         elif request.POST.get('2'):
-            rating = Test(value=2)
-            rating.save()
+            value = 2
         elif request.POST.get('3'):
-            rating = Test(value=3)
-            rating.save()
+            value = 3
         elif request.POST.get('4'):
-            rating = Test(value=4)
-            rating.save()
+            value = 4
         elif request.POST.get('5'):
-            rating = Test(value=5)
-            rating.save()
+            value = 5
+        time = timer[-1] - timer[0]
+        rating = Test(value=value, time=time)
+        timer = []
         return redirect("/")
     else:
         return render(request, "interface/test.html")
