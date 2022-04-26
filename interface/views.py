@@ -38,7 +38,6 @@ def product(request, key):
 
 def checkout(request):
     if request.method == "POST":
-        timer.append(time.perf_counter())
         dispensed.clear()
         return redirect("/test")
     items = []
@@ -62,6 +61,7 @@ def dispense(request, key):
     if request.method == "POST":
         dispensed[product.name].append(precise_distance())
         # dispensed[product.name].append(1)
+        timer.append(time.perf_counter())
         return redirect(index)
     else:
         return render(request, "interface/dispense.html", {
